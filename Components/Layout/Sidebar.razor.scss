@@ -1,0 +1,46 @@
+.sidebar {
+    position:absolute;
+    bottom:0px;
+    width:100%;
+    .sidebar__list {
+        display:flex;
+        justify-content:space-between;
+        list-style-type:none;
+        padding: 10px 20px 10px 20px;
+        border-top: 1px solid black;
+        .sidebar__element {
+            .sidebar__icon {
+                display: block;
+                width: 32px;
+                height: 32px;
+                mask-size:contain;
+                background-color: black;
+                cursor:pointer;
+                transition:.2s;
+            }
+            .sidebar__icon:hover {
+                background-color: rgba(lightskyblue, .9);
+            }
+            .sidebar__icon--menu {
+                mask-image: url("/icons/menu.svg");
+            }
+            .sidebar__icon--notifications {
+                mask-image: url("/icons/notification.svg");
+            }
+            .sidebar__icon--add {
+                mask-image: url("/icons/add.svg");
+            }
+            .sidebar__icon--chats {
+                mask-image: url("/icons/chat.svg");
+            }
+            .sidebar__icon--friends {
+                mask-image: url("/icons/friends.svg");
+            }
+        }
+    }
+}
+@media only screen and (min-width: 768px) {
+    .sidebar {
+        display:none;
+    }
+}

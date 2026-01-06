@@ -1,0 +1,99 @@
+﻿<nav class="nav @(ShowMenu ? "show" : "")">
+    <span class="nav__handle"><i class="nav__icon nav__icon--close" @onclick="HandleMenu"></i></span>
+    <header class="nav__header">
+        <i class="nav__icon nav__icon--avatar" aria-label="Empty user avatar"></i>
+        <h1 class="nav__name">Not logged</h1>
+        <ul class="nav__dropdown">
+            <li class="nav__element--main">
+                <i class="nav__icon nav__icon--arrow_down @(_showAuthOption ? "show" : "")" aria-label="Dropdown icon" @onclick="HandleAuthOption"></i>
+                <ul class="nav__dropdown nav__dropdown--nested @(_showAuthOption ? "show" : "")">
+                    <li class="nav__element">
+                        <a class="nav__link" href="#">Login</a>
+                    </li>
+                    <li class="nav__element">
+                        <a class="nav__link" href="#">Register</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <ul class="nav__add">
+        <li class="nav__element">+ New project</li>
+        <li class="nav__element">+ New task</li>
+    </ul>
+    <ul class="nav__options">
+        <li class="nav__element">
+            <a class="nav__link show" href="#">
+                <i class="nav__icon nav__icon--projects"></i>
+                <span>Projects</span>
+            </a>
+        </li>
+        <li class="nav__element">
+            <a class="nav__link" href="#">
+                <i class="nav__icon nav__icon--chats"></i>
+                <span>Chats</span>
+            </a>
+        </li>
+        <li class="nav__element">
+            <a class="nav__link" href="#">
+                <i class="nav__icon nav__icon--notifications"></i>
+                <span>Notifications</span>
+            </a>
+        </li>
+        <li class="nav__element">
+            <a class="nav__link" href="#">
+                <i class="nav__icon nav__icon--friends"></i>
+                <span>Friends</span>
+            </a>
+        </li>
+        <li class="nav__element">
+            <a class="nav__link" href="#">
+                <i class="nav__icon nav__icon--calendar"></i>
+                <span>Calendar</span>
+            </a>
+        </li>
+        <li class="nav__element">
+            <a class="nav__link" href="#">
+                <i class="nav__icon nav__icon--import"></i>
+                <span>Import task</span>
+            </a>
+        </li>
+        <li class="nav__element">
+            <a class="nav__link" href="#">
+                <i class="nav__icon nav__icon--export"></i>
+                <span>Export task</span>
+            </a>
+        </li>
+        <li class="nav__element">
+            <a class="nav__link" href="#">
+                <i class="nav__icon nav__icon--settings"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="nav__latest">
+        <li class="nav__list">
+            <div class="nav__desc" @onclick="HandleLatest">
+                <h2 class="nav__title">Latest</h2>
+                <i class="nav__icon nav__icon--arrow_down @(_showLatest ? "show" : "")"></i>
+            </div>
+            <ul class="nav__list nav__list--nested @(_showLatest ? "show" : "")">
+                <li>
+                    <a class="nav__link" href="#">Task 1</a>
+                </li>
+                <li>
+                    <a class="nav__link" href="#">Task 2</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <footer class="nav__footer">
+        <a href="">
+            <img class="nav__logo" src="images/logo.webp" aria-label="Done logo" alt="Done logo" />
+        </a>
+    </footer>
+</nav>
+<span class="nav__handle">
+    <i class="nav__icon nav__icon--show" @onclick="HandleMenu"></i>
+</span>
+<Auth />
