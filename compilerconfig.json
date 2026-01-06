@@ -14,5 +14,13 @@
   {
     "outputFile": "Components/Layout/Auth.razor.css",
     "inputFile": "Components/Layout/Auth.razor.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/form.css",
+    "inputFile": "wwwroot/css/form.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/app.css",
+    "inputFile": "wwwroot/css/app.scss"
   }
 ]

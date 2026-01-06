@@ -1,0 +1,50 @@
+.form {
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    margin: 10px 0px 10px 0px;
+    .form__pair {
+        .form__input {
+            padding:5px;
+            height: 35px;
+            width:350px;
+            background-color:transparent;
+            border:none;
+            border-bottom: 1px solid black;
+            font-size:16px;
+        }
+        .form__input:focus {
+            outline:none;
+            border-bottom: 1px solid lightskyblue;
+        }
+    }
+    .form__submits {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding: 0px 20px 0px 20px;
+        margin-top:10px;
+        .form__cancel {
+            font-size:14px;
+            cursor:pointer;
+            transition: .2s;
+        }
+        .form__cancel:hover {
+            color:rgba(red, .5);
+        }
+        .form__input--submit {
+            align-self:center;
+            padding:10px;
+            width:100px;
+            background-color:rgba(lightskyblue, .5);
+            font-size:16px;
+            border:none;
+            border-radius: 10px;
+            cursor:pointer;
+            transition: .2s;
+        }
+        .form__input--submit:hover {
+            background-color: lightskyblue;
+        }
+    }
+}

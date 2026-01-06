@@ -1,7 +1,18 @@
 ﻿<div class="auth">
-    <div class="auth__wrapper">
-        <div class="auth__menu">
-            
-        </div>
+    <div class="auth__menu">
+        <i class="auth__icon auth__icon--close" aria-label="Close form" @onclick="CloseForm"></i>
+        <ul class="auth__select">
+            <li class="auth__option @(AuthOption == AuthOption.Login ? "show" : "")" @onclick="() => HandleAuthOption(AuthOption.Login)">Login</li>
+            <li class="auth__option @(AuthOption == AuthOption.Register ? "show" : "")" @onclick="() => HandleAuthOption(AuthOption.Register)">Register</li>
+        </ul>
+        @if(AuthOption == AuthOption.Register)
+        {
+            <Register CloseForm="@CloseForm" />
+        }
+        else
+        {
+            <Login CloseForm="@CloseForm" />
+        }
+        <img class="auth__image" src="/images/logo.webp" aria-label="Done logo" />
     </div>
 </div>

@@ -1,8 +1,57 @@
 ﻿.auth {
   position: absolute;
   left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 2;
+}
+.auth .auth__icon {
+  display: block;
+  background-color: black;
+  mask-size: contain;
+}
+.auth .auth__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 20px;
+}
+.auth .auth__menu .auth__icon--close {
+  align-self: flex-end;
+  width: 25px;
+  height: 25px;
+  mask-image: url("/icons/close.svg");
+  transition: 0.2s;
+  cursor: pointer;
+}
+.auth .auth__menu .auth__icon--close:hover {
+  background-color: rgba(135, 206, 250, 0.8);
+}
+.auth .auth__menu .auth__select {
+  display: flex;
+  list-style-type: none;
+}
+.auth .auth__menu .auth__select .auth__option {
+  padding-bottom: 5px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 3px solid black;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.auth .auth__menu .auth__select .auth__option:hover {
+  border-bottom: 3px solid rgba(135, 206, 250, 0.4);
+}
+.auth .auth__menu .auth__select .auth__option.show {
+  border-bottom: 3px solid lightskyblue;
+}
+.auth .auth__menu .auth__image {
+  align-self: center;
+  width: 150px;
 }

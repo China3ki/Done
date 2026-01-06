@@ -1,11 +1,57 @@
 .auth {
     position:absolute;
     left:0px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     width:100%;
     height:100%;
     background-color:rgba(black, .3);
     z-index:2;
-    .auth__wrapper {
-
+    .auth__icon {
+        display:block;
+        background-color:black;
+        mask-size:contain;
+    }
+    .auth__menu {
+        display:flex;
+        flex-direction:column;
+        gap: 5px;
+        padding:15px;
+        background-color:white;
+        border-radius:20px;
+        .auth__icon--close {
+            align-self:flex-end;
+            width:25px;
+            height:25px;
+            mask-image: url("/icons/close.svg");
+            transition: .2s;
+            cursor:pointer;
+        }
+        .auth__icon--close:hover {
+            background-color: rgba(lightskyblue, .8);
+        }
+        .auth__select {
+            display:flex;
+            list-style-type:none;
+            .auth__option {
+                padding-bottom:5px;
+                width:100%;
+                text-align:center;
+                border-bottom: 3px solid black;
+                transition: .2s;
+                cursor:pointer;
+            }
+            .auth__option:hover {
+                border-bottom: 3px solid rgba(lightskyblue, .4);
+            }
+            .auth__option.show {
+                border-bottom: 3px solid lightskyblue;
+            }
+        }
+        .auth__image {
+            align-self:center;
+            width:150px;
+        }
     }
 }

@@ -1,0 +1,64 @@
+﻿.form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0px 10px 0px;
+}
+.form .form__pair .form__input {
+  padding: 5px;
+  height: 35px;
+  width: 350px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 16px;
+}
+.form .form__pair .form__input:focus {
+  outline: none;
+  border-bottom: 1px solid lightskyblue;
+}
+.form .form__submits {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px 0px 20px;
+  margin-top: 10px;
+}
+.form .form__submits .form__cancel {
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.form .form__submits .form__cancel:hover {
+  color: rgba(255, 0, 0, 0.5);
+}
+.form .form__submits .form__input--submit {
+  align-self: center;
+  padding: 10px;
+  width: 100px;
+  background-color: rgba(135, 206, 250, 0.5);
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.form .form__submits .form__input--submit:hover {
+  background-color: lightskyblue;
+}
+
+@font-face {
+  font-family: "now";
+  src: url("/fonts/now.light.otf");
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "now";
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}

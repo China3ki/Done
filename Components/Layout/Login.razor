@@ -1,0 +1,14 @@
+﻿<EditForm class="form" Model="_login">
+    <div class="form__pair">
+        <label class="form__icon" for="email"></label>
+        <InputText class="form__input" id="email" @bind-Value="_login.Email" placeholder="Email" />
+    </div>
+    <div class="form__pair">
+        <label class="form__icon" for="password"></label>
+        <InputText class="form__input" id="password" @bind-Value="_login.Password" placeholder="Password" />
+    </div>
+    <div class="form__submits">
+        <span class="form__cancel" @onclick="CloseForm">Cancel</span>
+        <input class="form__input--submit" type="submit" value="Login" />
+    </div>
+</EditForm>
