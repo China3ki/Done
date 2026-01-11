@@ -1,6 +1,8 @@
 using Done.Components;
 using Done.Entities;
 using Done.Services;
+using Done.Services.ProjectsServices;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +19,11 @@ builder.Services.AddDbContextFactory<DoneContext>(opt =>
 {
     opt.UseNpgsql(builder.Configuration["ConnectionString"]);
 });
+builder.Services.AddScoped<ProtectedLocalStorage>();
 builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthService>());
+builder.Services.AddScoped<ProjectServiceLocal>();
 
 builder.Services.AddAuthenticationCore();
 builder.Services.AddCascadingAuthenticationState();

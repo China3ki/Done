@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\Layout\Nowy folder\" />
+    <Folder Include="Etc\Interfaces\" />
   </ItemGroup>
 
 </Project>

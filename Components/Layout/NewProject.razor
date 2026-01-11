@@ -1,6 +1,6 @@
 ﻿<div class="project">
     <div class="project__menu">
-        <i class="project__icon project__icon--close" @onclick="CloseNewProject"></i>
+        <i class="project__icon project__icon--close" @onclick="Close"></i>
         <header class="project__header">
             <i class="project__icon project__icon--header"></i>
             <h1 class="project__title">New Project</h1>
@@ -8,10 +8,10 @@
         <EditForm class="form" Model="_newProjectModel" OnValidSubmit="Submit">
             <DataAnnotationsValidator />
             <div class="form__pair">
-                <InputText class="form__input" @bind-Value="_newProjectModel.ProjectName" placeholder="Project name" />
+                <InputText class="form__input" @bind-Value="_newProjectModel.Name" placeholder="Project name" />
             </div>
             <div class="form__submits">
-                <span class="form__cancel" @onclick="CloseNewProject">Cancel</span>
+                <span class="form__cancel" @onclick="Close">Cancel</span>
                 <input class="form__input--submit" type="submit" value="Add project" />
             </div>
             <ValidationSummary />

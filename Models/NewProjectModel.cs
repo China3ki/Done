@@ -5,6 +5,7 @@ namespace Done.Models
     public class NewProjectModel
     {
         [Required(ErrorMessage = "Project name cannot be empty!")]
-        public string ProjectName { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public DateOnly CreatedDate { get; set; }
     }
 }
