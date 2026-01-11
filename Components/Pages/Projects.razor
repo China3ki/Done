@@ -1,0 +1,38 @@
+﻿@page "/"
+
+
+<div class="projects">
+    <div class="projects__header">
+        <i class="projects__icon projects__icon--header"></i>
+        <h1 class="projects__title">Projects</h1>
+    </div>
+    <button class="projects__add" @onclick="ShowNewProject">+ New project</button>
+    <input class="projects__input" type="text" placeholder="Search projects" />
+    <table class="projects__table">
+        <tr>
+            <th>Lp.</th>
+            <th>Project name</th>
+            <th>Date created</th>
+            <th>Pinned</th>
+            <th>Details</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td class="projects__open">Fajny sdfdsfsdfdssfdprojekt</td>
+            <td>2023.20.2</td>
+            <td><i class="projects__icon projects__icon--pin"></i></td>
+            <td><i class="projects__icon projects__icon--details"></i></td>
+        </tr>
+    </table>
+    <div class="projects__pagination">
+        <span class="projects__page">1</span>
+        <span class="projects__page show">2</span>
+        <span class="projects__page">3</span>
+        <span class="projects__page">4</span>
+        <span class="projects__page">5</span>
+    </div>
+</div>
+@if(_showNewProject)
+{
+    <NewProject CloseNewProject="CloseNewProject" />
+}

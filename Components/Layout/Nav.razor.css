@@ -1,6 +1,7 @@
 ﻿.nav {
   position: absolute;
   left: 0px;
+  top: 0px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -30,13 +31,20 @@
   align-items: center;
   width: 100%;
 }
+.nav .nav__header .nav__logout {
+  cursor: pointer;
+}
+.nav .nav__header .nav__logout:hover {
+  color: lightskyblue;
+}
 .nav .nav__header .nav__icon--avatar {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   mask-image: url("/icons/avatar.svg");
 }
 .nav .nav__header .nav__name {
-  font-size: 20px;
+  text-align: center;
+  font-size: 17px;
 }
 .nav .nav__header .nav__dropdown {
   list-style-type: none;
@@ -103,14 +111,13 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 17px;
   padding: 15px;
   border-radius: 10px;
   transition: 0.2s;
 }
 .nav .nav__options .nav__element .nav__link .nav__icon--projects {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   mask-image: url("/icons/project.svg");
 }
 .nav .nav__options .nav__element .nav__link .nav__icon--chats {

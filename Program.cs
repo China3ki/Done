@@ -1,4 +1,9 @@
 using Done.Components;
+using Done.Entities;
+using Done.Services;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +11,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+
+// Scopes
+builder.Services.AddDbContextFactory<DoneContext>(opt =>
+{
+    opt.UseNpgsql(builder.Configuration["ConnectionString"]);
+});
+builder.Services.AddScoped<ProtectedSessionStorage>();
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthService>());
+
+builder.Services.AddAuthenticationCore();
+builder.Services.AddCascadingAuthenticationState();
+
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

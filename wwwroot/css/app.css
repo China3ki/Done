@@ -1,17 +1,25 @@
 ﻿.form {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   margin: 10px 0px 10px 0px;
+  width: 100%;
+  max-width: 500px;
+}
+.form .form__pair {
+  width: 100%;
 }
 .form .form__pair .form__input {
   padding: 5px;
   height: 35px;
-  width: 350px;
+  width: 100%;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
   font-size: 16px;
+}
+.form .form__pair .form__input.invalid {
+  border-bottom: 1px solid rgba(255, 0, 0, 0.8);
 }
 .form .form__pair .form__input:focus {
   outline: none;
@@ -35,7 +43,6 @@
 .form .form__submits .form__input--submit {
   align-self: center;
   padding: 10px;
-  width: 100px;
   background-color: rgba(135, 206, 250, 0.5);
   font-size: 16px;
   border: none;
@@ -45,6 +52,23 @@
 }
 .form .form__submits .form__input--submit:hover {
   background-color: lightskyblue;
+}
+.form .form__created {
+  margin-top: 10px;
+  align-self: center;
+  background-color: rgba(0, 128, 0, 0.2);
+  border: 2px solid green;
+  padding: 10px;
+}
+
+.validation-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style-type: none;
+  color: rgba(255, 0, 0, 0.8);
+  border-top: 1px dashed red;
+  padding-top: 10px;
 }
 
 @font-face {
@@ -61,4 +85,8 @@
 a {
   text-decoration: none;
   color: initial;
+}
+
+body {
+  min-height: 100vh;
 }

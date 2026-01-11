@@ -22,5 +22,17 @@
   {
     "outputFile": "wwwroot/css/app.css",
     "inputFile": "wwwroot/css/app.scss"
+  },
+  {
+    "outputFile": "Components/Pages/Projects.razor.css",
+    "inputFile": "Components/Pages/Projects.razor.scss"
+  },
+  {
+    "outputFile": "Components/Layout/header.razor.css",
+    "inputFile": "Components/Layout/header.razor.scss"
+  },
+  {
+    "outputFile": "Components/Layout/NewProject.razor.css",
+    "inputFile": "Components/Layout/NewProject.razor.scss"
   }
 ]

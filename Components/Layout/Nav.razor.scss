@@ -1,6 +1,7 @@
 .nav {
     position:absolute;
     left:0px;
+    top:0px;
     display: flex;
     flex-direction:column;
     gap:20px;
@@ -29,14 +30,21 @@
         gap: 10px;
         align-items: center;
         width:100%;
+        .nav__logout {
+            cursor:pointer;
+        }
+        .nav__logout:hover {
+            color: lightskyblue;
+        }
         .nav__icon--avatar {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             mask-image: url("/icons/avatar.svg");
         }
 
         .nav__name {
-            font-size: 20px;
+            text-align:center;
+            font-size: 17px;
         }
 
         .nav__dropdown {
@@ -109,13 +117,12 @@
                 display:flex;
                 align-items:center;
                 gap:20px;
-                font-size:17px;
                 padding:15px;
                 border-radius:10px;
                 transition: .2s;
                 .nav__icon--projects {
-                width:30px;
-                height:30px;
+                width:25px;
+                height:25px;
                 mask-image: url("/icons/project.svg");
                 }
                 .nav__icon--chats {

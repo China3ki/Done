@@ -1,0 +1,29 @@
+﻿<div class="project">
+    <div class="project__menu">
+        <i class="project__icon project__icon--close" @onclick="CloseNewProject"></i>
+        <header class="project__header">
+            <i class="project__icon project__icon--header"></i>
+            <h1 class="project__title">New Project</h1>
+        </header>
+        <EditForm class="form" Model="_newProjectModel" OnValidSubmit="Submit">
+            <DataAnnotationsValidator />
+            <div class="form__pair">
+                <InputText class="form__input" @bind-Value="_newProjectModel.ProjectName" placeholder="Project name" />
+            </div>
+            <div class="form__submits">
+                <span class="form__cancel" @onclick="CloseNewProject">Cancel</span>
+                <input class="form__input--submit" type="submit" value="Add project" />
+            </div>
+            <ValidationSummary />
+        </EditForm>
+        <AuthorizeView>
+            <NotAuthorized>
+                <div class="project__warning">
+                    <span>You are not logged!</span>
+                    <span>All projects gonna be save locally!</span>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+        <img class="project__logo" src="/images/logo.webp" alt="Done logo" />
+    </div>
+</div>

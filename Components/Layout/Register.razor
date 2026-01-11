@@ -1,4 +1,5 @@
-﻿<EditForm class="form" Model="_register">
+﻿<EditForm class="form" EditContext="_editContext" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
     <div class="form__pair">
         <label class="form__icon" for="name"></label>
         <InputText class="form__input" id="name" @bind-Value="_register.Name" placeholder="Name"/>
@@ -13,14 +14,19 @@
     </div>
     <div class="form__pair">
         <label class="form__icon" for="password"></label>
-        <InputText class="form__input" id="password" @bind-Value="_register.Password" placeholder="Password" />
+        <InputText class="form__input" id="password" type="password" @bind-Value="_register.Password" placeholder="Password" />
     </div>
     <div class="form__pair">
         <label class="form__icon" for="confirmedPassword"></label>
-        <InputText class="form__input" id="confirmedPassword" @bind-Value="_register.ConfirmedPassword" placeholder="Confirmed password" />
+        <InputText class="form__input" id="confirmedPassword" type="password" @bind-Value="_register.ConfirmedPassword" placeholder="Confirmed password" />
     </div>
     <div class="form__submits">
         <span class="form__cancel" @onclick="CloseForm">Cancel</span>
         <input class="form__input--submit" type="submit" value="Register" />
     </div>
+    @if(_accountCreatedInfo)
+    {
+        <span class="form__created">Account created succesfully!</span>
+    }
+    <ValidationSummary />
 </EditForm>

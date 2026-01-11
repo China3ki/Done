@@ -1,14 +1,16 @@
-﻿<EditForm class="form" Model="_login">
+﻿<EditForm class="form" EditContext="_editContext" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
     <div class="form__pair">
         <label class="form__icon" for="email"></label>
-        <InputText class="form__input" id="email" @bind-Value="_login.Email" placeholder="Email" />
+        <InputText class="form__input" id="email" @bind-Value="_login.Email" type="email" autocomplete="on" placeholder="Email" />
     </div>
     <div class="form__pair">
         <label class="form__icon" for="password"></label>
-        <InputText class="form__input" id="password" @bind-Value="_login.Password" placeholder="Password" />
+        <InputText class="form__input" id="password" @bind-Value="_login.Password" type="password" autocomplete="on" placeholder="Password" />
     </div>
     <div class="form__submits">
         <span class="form__cancel" @onclick="CloseForm">Cancel</span>
         <input class="form__input--submit" type="submit" value="Login" />
     </div>
+    <ValidationSummary />
 </EditForm>
