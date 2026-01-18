@@ -1,4 +1,5 @@
 using Done.Components;
+using Done.Components.Layout;
 using Done.Entities;
 using Done.Services;
 using Done.Services.ProjectsServices;
@@ -24,7 +25,8 @@ builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthService>());
 builder.Services.AddScoped<ProjectServiceLocal>();
-
+builder.Services.AddScoped<ProjectServiceDb>();
+builder.Services.AddScoped<NewProjectService>();
 builder.Services.AddAuthenticationCore();
 builder.Services.AddCascadingAuthenticationState();
 

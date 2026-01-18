@@ -6,11 +6,9 @@
         <i class="projects__icon projects__icon--header"></i>
         <h1 class="projects__title">Projects</h1>
     </div>
-    <button class="projects__add" @onclick="ShowNewProject">+ New project</button>
-    <input class="projects__input" type="text" placeholder="Search projects" />
-
-    
-    @if(_projects.Count != 0)
+    <button class="projects__add" @onclick="() => HandleAddProjects(false)">+ New project</button>
+    <input class="projects__input" type="text" placeholder="Search projects" @bind="_searchValue" @bind:event="oninput" @onkeyup="Pagination"/>
+    @if (_projectsToDisplay.Count != 0)
     {
         <table class="projects__table">
             <tr>
@@ -20,31 +18,44 @@
                 <th>Pinned</th>
                 <th>Details</th>
             </tr>
-            @for(int i = 0; i < _projects.Count; i++)
+            @{
+                int i = 0;
+            }
+            @foreach(var project in _projectsToDisplay)
             {
                 <tr>
-                    <td>@(i + 1)</td>
-                    <td class="projects__open">@_projects[i].Project.Name</td>
-                    <td>@_projects[i].Project.CreatedDate</td>
-                    <td><i class="projects__icon projects__icon--pin"></i></td>
-                    <td><i class="projects__icon projects__icon--details"></i></td>
-                </tr>
+                <td>@(++i)</td>
+                <td class="projects__open">@project.Name</td>
+                <td>@project.CreatedDate</td>
+                <td><i class="projects__icon projects__icon--pin @(project.Pinned ? "fill" : "")" @onclick="() => PinProject(project.Id)"></i></td>
+                <td><i class="projects__icon projects__icon--details"></i></td>
+            </tr>
             }
         </table>
-    } 
-    else 
+    }
+    else
     {
-        <span>You do not have any projects yet!</span>
+        <span>You do not have any projects to display!</span>
     }
     <div class="projects__pagination">
-        <span class="projects__page">1</span>
-        <span class="projects__page show">2</span>
-        <span class="projects__page">3</span>
-        <span class="projects__page">4</span>
-        <span class="projects__page">5</span>
+        @for (int i = 1; i <= _pages; i++)
+        {
+            int pageNumber = i;
+            if(_currentPage == i)
+            {
+                <span class="projects__page show">@i</span>
+            } else
+            {
+                <span class="projects__page" @onclick="() => ChangePage(pageNumber)">@i</span>
+            }
+        }
     </div>
 </div>
-@if(_showNewProject)
+@if(_showAddProjects)
 {
-    <NewProject CloseNewProject="CloseNewProject" />
+    <NewProject CloseNewProject="HandleAddProjects"/>
+}
+@if(_showInfo)
+{
+    <Notification Info="You have local saved projects" Question="Do you wanna send them to database?" OnConfirm="() => HandleSynchronize(true)" OnCancel="() => HandleSynchronize(false)" />
 }

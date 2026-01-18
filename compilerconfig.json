@@ -34,5 +34,9 @@
   {
     "outputFile": "Components/Layout/NewProject.razor.css",
     "inputFile": "Components/Layout/NewProject.razor.scss"
+  },
+  {
+    "outputFile": "Components/Layout/Notification.razor.css",
+    "inputFile": "Components/Layout/Notification.razor.scss"
   }
 ]

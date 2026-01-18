@@ -79,7 +79,7 @@
          .projects__icon:hover {
              background-color: rgba(lightskyblue, .5);
          }
-         .projects__icon.fill {
+         .projects__icon--pin.fill {
              mask-image: url("/icons/pin-fill.svg");
              background-color: lightskyblue;
          }

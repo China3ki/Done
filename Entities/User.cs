@@ -18,4 +18,6 @@ public partial class User
     public string UserPassword { get; set; } = null!;
 
     public bool UserAdmin { get; set; }
+
+    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
 }

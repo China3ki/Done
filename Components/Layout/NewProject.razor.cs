@@ -1,4 +1,5 @@
-﻿using Done.Models;
+﻿using Done.Entities;
+using Done.Models;
 using Done.Models.LocalModels;
 using Done.Services;
 using Done.Services.ProjectsServices;
@@ -15,28 +16,43 @@ namespace Done.Components.Layout
         public AuthService AuthService { get; set; } = default!;
         [Inject]
         public ProjectServiceLocal ProjectServiceLocal { get; set; } = default!;
-        private readonly NewProjectModel _newProjectModel = new();
+        [Inject]
+        public ProjectServiceDb ProjectServiceDb { get; set; } = default!;
+        [Inject]
+        public NewProjectService NewProjectService { get; set; } = default!;
+        private readonly ProjectModel _newProjectModel = new();
         public async Task Close() => await CloseNewProject.InvokeAsync(false);
         public async Task Submit()
         {
             var authenticationState= await AuthService.GetAuthenticationStateAsync();
             bool isAuthenticated = authenticationState.User.Identity?.IsAuthenticated ?? false;
             if (!isAuthenticated) await SubmitLocal();
-            else await SubmitToDb();
+            else await SubmitToDb(Convert.ToInt32(authenticationState.User.FindFirst("Id")?.Value));
         }
-        private async Task SubmitToDb()
+        private async Task SubmitToDb(int userId)
         {
-
+            Project project = new()
+            {
+                ProjectName = _newProjectModel.Name,
+                ProjectCreatedDate = DateOnly.FromDateTime(DateTime.Today),
+                ProjectPinned = false,
+                ProjectUserId = userId
+            };
+            await ProjectServiceDb.AddProject(project);
+            NewProjectService.NotifyProjectsChanged();
+            await CloseNewProject.InvokeAsync(true);
         }
         private async Task SubmitLocal()
         {
-            _newProjectModel.CreatedDate = DateOnly.FromDateTime(DateTime.Today);
-            ProjectModel project = new()
+            DisplayProjectModel project = new()
             {
-                Project = _newProjectModel
+                Name = _newProjectModel.Name,
+                CreatedDate = DateOnly.FromDateTime(DateTime.Today),
+                Pinned = false
             };
            await ProjectServiceLocal.AddProject(project);
-           await CloseNewProject.InvokeAsync(true);
+            NewProjectService.NotifyProjectsChanged();
+            await CloseNewProject.InvokeAsync(true);
         }
     }
 }

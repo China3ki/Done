@@ -115,11 +115,23 @@
         .nav__element {
             .nav__link {
                 display:flex;
+                justify-content:space-between;
                 align-items:center;
                 gap:20px;
-                padding:15px;
+                padding:15px 20px 15px 15px;
                 border-radius:10px;
                 transition: .2s;
+                .nav__main {
+                    display:flex;
+                    align-items:center;
+                    gap:20px;
+                }
+                .nav__counter {
+                    border-radius:10px;
+                    text-align:center;
+                    padding: 5px 5px 5px 5px;
+                    background-color: rgba(lightskyblue, .4);
+                }
                 .nav__icon--projects {
                 width:25px;
                 height:25px;

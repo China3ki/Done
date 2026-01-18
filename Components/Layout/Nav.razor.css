@@ -109,11 +109,23 @@
 }
 .nav .nav__options .nav__element .nav__link {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding: 15px;
+  padding: 15px 20px 15px 15px;
   border-radius: 10px;
   transition: 0.2s;
+}
+.nav .nav__options .nav__element .nav__link .nav__main {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav .nav__options .nav__element .nav__link .nav__counter {
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  background-color: rgba(135, 206, 250, 0.4);
 }
 .nav .nav__options .nav__element .nav__link .nav__icon--projects {
   width: 25px;

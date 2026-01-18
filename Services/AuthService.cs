@@ -22,6 +22,7 @@ namespace Done.Services
                 if (sessionResult.ExpiresTime < DateTime.UtcNow) return new AuthenticationState(_anonymous);
 
                 sessionResult.ExpiresTime = DateTime.UtcNow.AddMinutes(30);
+                await _sessionStorage.SetAsync("userSession", sessionResult);
 
                 return new AuthenticationState(CreateSessionClaims(sessionResult));
             } catch
@@ -43,7 +44,6 @@ namespace Done.Services
         }
         public SessionModel CreateSessionModel(User user)
         {
-            #warning Might now working
             SessionModel sessionModel = new()
             {
                 Id = user.UserId,

@@ -81,7 +81,7 @@
 .projects .projects__table .projects__icon:hover {
   background-color: rgba(135, 206, 250, 0.5);
 }
-.projects .projects__table .projects__icon.fill {
+.projects .projects__table .projects__icon--pin.fill {
   mask-image: url("/icons/pin-fill.svg");
   background-color: lightskyblue;
 }
