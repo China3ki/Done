@@ -38,5 +38,13 @@
   {
     "outputFile": "Components/Layout/Notification.razor.css",
     "inputFile": "Components/Layout/Notification.razor.scss"
+  },
+  {
+    "outputFile": "Components/Layout/NotificationSmall.razor.css",
+    "inputFile": "Components/Layout/NotificationSmall.razor.scss"
+  },
+  {
+    "outputFile": "Components/Pages/Panel.razor.css",
+    "inputFile": "Components/Pages/Panel.razor.scss"
   }
 ]

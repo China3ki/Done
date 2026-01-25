@@ -1,0 +1,64 @@
+﻿.notification__wrapper {
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  gap: 10px;
+  transition: 0.3s;
+}
+.notification__wrapper .notification {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(135, 206, 250, 0.7);
+  padding: 10px;
+  border-radius: 10px 0px 0px 10px;
+  max-width: 300px;
+  animation: show 0.4s;
+}
+.notification__wrapper .notification__icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  background-color: black;
+}
+.notification__wrapper .notification__icon--close {
+  width: 20px;
+  height: 20px;
+  mask-image: url("/icons/close.svg");
+  align-self: flex-end;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.notification__wrapper .notification__icon--close:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.notification__wrapper .notification__main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.notification__wrapper .notification__main .notification__info {
+  font-size: 15px;
+}
+.notification__wrapper .notification__main .notification__icon--info {
+  mask-image: url("/icons/info.svg");
+}
+.notification__wrapper .notification__main .notification__icon--info.success {
+  background-color: green;
+}
+.notification__wrapper .notification__main .notification__icon--info.error {
+  background-color: red;
+}
+
+@keyframes show {
+  from {
+    transform: translate(100%);
+  }
+  to {
+    transform: translate(0%);
+  }
+}

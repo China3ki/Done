@@ -19,7 +19,9 @@ namespace Done.Components.Layout
         [Inject]
         public ProjectServiceDb ProjectServiceDb { get; set; } = default!;
         [Inject]
-        public NewProjectService NewProjectService { get; set; } = default!;
+        public UpdateProjectService NewProjectService { get; set; } = default!;
+        [Inject]
+        public NotificationService NotificationService { get; set; } = default!;
         private readonly ProjectModel _newProjectModel = new();
         public async Task Close() => await CloseNewProject.InvokeAsync(false);
         public async Task Submit()
@@ -28,6 +30,7 @@ namespace Done.Components.Layout
             bool isAuthenticated = authenticationState.User.Identity?.IsAuthenticated ?? false;
             if (!isAuthenticated) await SubmitLocal();
             else await SubmitToDb(Convert.ToInt32(authenticationState.User.FindFirst("Id")?.Value));
+            await NotificationService.ShowNotification(new NotificationModel() { Info = $"Project {_newProjectModel.Name} has been created", InfoType = InfoType.Success });
         }
         private async Task SubmitToDb(int userId)
         {

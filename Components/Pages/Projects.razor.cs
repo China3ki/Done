@@ -17,7 +17,9 @@ namespace Done.Components.Pages
         [Inject]
         public ProjectServiceDb DbService { get; set; } = default!;
         [Inject]
-        NewProjectService NewProjectService { get; set; } = default!;
+        public UpdateProjectService NewProjectService { get; set; } = default!;
+        [Inject]
+        public NotificationService NotificationService { get; set; } = default!;
         private List<DisplayProjectModel> _projects = [];
         private List<DisplayProjectModel> _projectsToDisplay = [];
         private bool _showInfo = false;
@@ -25,6 +27,7 @@ namespace Done.Components.Pages
         private string _searchValue = string.Empty;
         private int _pages;
         private int _currentPage = 1;
+        private SortOptions _sortOption = SortOptions.Asc;
         protected override async Task OnParametersSetAsync()
         {
             NewProjectService.OnProjectsChanged += ChangeProjectState;
@@ -36,7 +39,7 @@ namespace Done.Components.Pages
             await LoadData();
             StateHasChanged();
         }
-        private async void PinProject(int projectId)
+        private async Task PinProject(int projectId)
         {
             (bool isAuthenticated, int userId) = await CheckAuthentication();
             if (isAuthenticated) await DbService.PinProject(projectId, userId);
@@ -44,13 +47,14 @@ namespace Done.Components.Pages
             await LoadData();
             StateHasChanged();
         }
-        private async void HandleSynchronize(bool synchronize)
+        private async Task HandleSynchronize(bool synchronize)
         {
             var authenticationState = await AuthStateTask;
             int userId = Convert.ToInt32(authenticationState.User.FindFirst("Id")?.Value);
             _showInfo = false;
             await DbService.SynchronizeProjects(userId, synchronize);
             await LoadData();
+            NewProjectService.NotifyProjectsChanged();
             StateHasChanged();
         }
         private async Task HandleAddProjects(bool update)
@@ -58,24 +62,26 @@ namespace Done.Components.Pages
             _showAddProjects = _showAddProjects == false;
             if (update) await LoadData();
         }
-        private void Pagination()
+        /// <summary>
+        /// Sorting method for projects
+        /// </summary>
+        /// <param name="sortType">Sort options. If not specified, projects are sorted by Lp</param>
+        private void Pagination(SortType sortType = SortType.Pinned) 
         {
             var query = _projects.AsQueryable();
             List<DisplayProjectModel> projects = [];
-            if (string.IsNullOrEmpty(_searchValue))
+            if (!string.IsNullOrEmpty(_searchValue)) query = query.Where(p => p.Name.ToLower().Contains(_searchValue));
+            query = sortType switch
             {
-                query = query.OrderByDescending(p => p.Pinned);
-                projects = query.ToList();
-                SetPages(projects);
-                _projectsToDisplay = projects.Skip((_currentPage - 1) * 10).Take(10).ToList();
-            }
-            else
-            {
-                query = query.OrderByDescending(p => p.Pinned);
-                projects = query.Where(p => p.Name.ToLower().Contains(_searchValue.ToLower())).ToList();
-                SetPages(projects);
-                _projectsToDisplay = projects.Skip((_currentPage - 1) * 10).Take(10).ToList();
-            }
+                SortType.Name => _sortOption == SortOptions.Asc ? query.OrderBy(p => p.Name) : query.OrderByDescending(p => p.Name),
+                SortType.Date => _sortOption == SortOptions.Asc ? query.OrderBy(p => p.CreatedDate) : query.OrderByDescending(p => p.CreatedDate),
+                SortType.Lp => _sortOption == SortOptions.Asc ? query.OrderBy(p => p.Lp) : query.OrderByDescending(p => p.Lp),
+                _ => _sortOption == SortOptions.Asc ? query.OrderByDescending(p => p.Pinned)  : query.OrderBy(p => p.Pinned),
+            };
+            _sortOption = _sortOption == SortOptions.Asc ? SortOptions.Desc : SortOptions.Asc;
+            projects = query.ToList();
+            SetPages(projects);
+            _projectsToDisplay = projects.Skip((_currentPage - 1) * 10).Take(10).ToList();
         }
         private void ChangePage(int page)
         {

@@ -1,4 +1,5 @@
-﻿using Done.Services;
+﻿using Done.Models;
+using Done.Services;
 using Done.Services.ProjectsServices;
 using Microsoft.AspNetCore.Components;
 using System.Security.Claims;
@@ -19,7 +20,9 @@ namespace Done.Components.Layout
         [Inject]
         public ProjectServiceLocal LocalService { get; set; } = default!;
         [Inject]
-        public NewProjectService NewProjectService { get; set; } = default!;
+        public UpdateProjectService UpdateProjectService { get; set; } = default!;
+        [Inject]
+        public NotificationService NotificationService { get; set; } = default!;
         private int _projectsNumber = 0;
         private bool _showAuthList = false;
         private bool _showAuth = false;
@@ -32,7 +35,7 @@ namespace Done.Components.Layout
         private void CloseAuth() => _showAuth = false;
         protected override async Task OnInitializedAsync()
         {
-            NewProjectService.OnProjectsChanged += GetProjectsNumber;
+            UpdateProjectService.OnProjectsChanged += GetProjectsNumber;
             GetProjectsNumber();
             await base.OnInitializedAsync();
         }
@@ -56,11 +59,16 @@ namespace Done.Components.Layout
             else _projectsNumber = await LocalService.GetProjectsNumber();
             StateHasChanged();
         }
-        private async Task Logout() => await AuthService.DestroyAuthenticationState();
+        private async Task Logout()
+        {
+            await AuthService.DestroyAuthenticationState();
+            UpdateProjectService.NotifyProjectsChanged();
+            await NotificationService.ShowNotification(new NotificationModel() { Info = "You succesfully logout", InfoType = InfoType.Success });
+        }
         private void HandleLatest() => _showLatest = _showLatest == false;
         public void Dispose()
         {
-            NewProjectService.OnProjectsChanged -= GetProjectsNumber;
+            UpdateProjectService.OnProjectsChanged -= GetProjectsNumber;
         }
     }
 }

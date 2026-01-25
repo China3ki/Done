@@ -26,7 +26,8 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthService>());
 builder.Services.AddScoped<ProjectServiceLocal>();
 builder.Services.AddScoped<ProjectServiceDb>();
-builder.Services.AddScoped<NewProjectService>();
+builder.Services.AddScoped<UpdateProjectService>();
+builder.Services.AddScoped<NotificationService>();
 builder.Services.AddAuthenticationCore();
 builder.Services.AddCascadingAuthenticationState();
 

@@ -4,6 +4,8 @@
     align-items:center;
     gap:15px;
     padding:20px 10px 20px 10px;
+    width:100%;
+    max-width:1200px;
     .projects__header {
         display:flex;
         align-items:center;
@@ -46,6 +48,14 @@
          font-size: 14px;
          th {
              font-style:italic;
+         }
+         .projects__table--header:hover {
+             transition:.2s;
+             background-color: rgba(lightskyblue, .3);
+             cursor:pointer;
+         }
+         .projects__table--header:active {
+             background-color: lightskyblue;
          }
          th, td {
              padding:5px;

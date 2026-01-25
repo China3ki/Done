@@ -89,4 +89,10 @@ a {
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  display: flex;
+  justify-content: center;
 }

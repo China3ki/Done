@@ -1,0 +1,22 @@
+﻿<div class="notification__wrapper">
+
+    @foreach(var notification in NotificationService._notifications)
+    {
+        <div class="notification show">
+            <i class="notification__icon notification__icon--close" @onclick="() => Remove(notification)"></i>
+            <div class="notification__main">
+                @if(notification.InfoType == InfoType.Success)
+                {
+                    <i class="notification__icon notification__icon--info success"></i>
+                } else if(notification.InfoType == InfoType.Error)
+                {
+                    <i class="notification__icon notification__icon--info error"></i>
+                } else
+                {
+                    <i class="notification__icon notification__icon--info"></i>
+                }
+                <p class="notification__info">@notification.Info</p>
+            </div>
+        </div>
+    }
+</div>

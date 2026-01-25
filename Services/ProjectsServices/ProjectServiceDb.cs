@@ -28,10 +28,12 @@ namespace Done.Services.ProjectsServices
             using var ctx = await _dbFactory.CreateDbContextAsync();
             List<Project> projects = await ctx.Projects.Where(p => p.ProjectUserId == userId).ToListAsync();
             List<DisplayProjectModel> projectsToDisplay = [];
+            int i = 1;
             foreach(var project in projects)
             {
                 DisplayProjectModel newDisplayProject = new()
                 {
+                    Lp = i++,
                     Id = project.ProjectId,
                     Name = project.ProjectName,
                     CreatedDate = project.ProjectCreatedDate,

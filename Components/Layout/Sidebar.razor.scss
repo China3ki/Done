@@ -2,6 +2,8 @@
     position:absolute;
     bottom:0px;
     width:100%;
+    z-index:3;
+    background-color:white;
     .sidebar__list {
         display:flex;
         justify-content:space-between;

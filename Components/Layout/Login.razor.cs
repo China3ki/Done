@@ -17,6 +17,10 @@ namespace Done.Components.Layout
         public IDbContextFactory<DoneContext> DbFactory { get; set; } = default!;
         [Inject]
         public AuthService AuthService { get; set; } = default!;
+        [Inject]
+        public UpdateProjectService UpdateProjectService { get; set; } = default!;
+        [Inject]
+        public NotificationService NotificationService { get; set; } = default!;
         private EditContext? _editContext;
         private ValidationMessageStore? _messageStore;
         private readonly LoginModel _login = new();
@@ -51,6 +55,8 @@ namespace Done.Components.Layout
 
             await AuthService.CreateAuthenticationState(AuthService.CreateSessionModel(user));
             await CloseForm.InvokeAsync();
+            UpdateProjectService.NotifyProjectsChanged();
+            await NotificationService.ShowNotification(new NotificationModel() { Info = $"Hello {user.UserName}!", InfoType = InfoType.Success });
         }
         private void FailedLoginMessage()
         {

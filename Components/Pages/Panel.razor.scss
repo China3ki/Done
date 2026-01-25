@@ -1,0 +1,148 @@
+.panel {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding: 10px 0px 10px 0px;
+    width:100%;
+    max-width:1200px;
+    .panel__icon {
+        display:block;
+        width:30px;
+        height:30px;
+        background-color:black;
+        mask-size: contain;
+    }
+    .panel__icon--header {
+        mask-image: url("/icons/project.svg")
+    }
+    .panel__header {
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        .panel__title {
+            color: lightskyblue;
+        }
+    }
+    .panel__stats {
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        list-style-type:none;
+        border-bottom: 1px solid lightskyblue;
+        padding:10px;
+        margin: 0px 10px 0px 10px;
+        .panel__stat {
+            display:flex;
+            align-items:center; 
+            flex-direction:column;
+             width:fit-content;
+
+            .panel__desc {
+                text-align:center;
+                font-size:13px;
+                font-weight: bold;
+            }
+        }
+    }
+    .panel__action {
+        display:flex;
+        justify-content:space-between;
+        padding: 0px 10px 0px 10px;
+        .panel__buttons {
+            display:flex;
+            align-items:center;
+            gap:5px;
+            .panel__button {
+                background-color:transparent;
+                border:none;
+                transition:.2s;
+                cursor:pointer;
+            }
+            .panel__button--add {
+                background-color: rgba(lightskyblue, .3);
+                padding:5px;
+                border-radius:10px;
+                font-weight:bold;
+            }
+            .panel__button--add:hover {
+                background-color:rgba(lightskyblue, .5);
+
+            }
+            .panel__button--delete:hover {
+                color:red;
+            }
+        }
+    }
+    .panel__chat {
+        display:flex;
+        flex-direction:column;
+        align-self:center;
+        width:100%;
+        max-height:400px;
+        max-width:400px;
+        border-radius:15px;
+        border: 2px solid black;
+        .panel__title {
+            padding:8px;
+        }
+        .panel__messages {
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            padding:10px;
+            height:350px;
+            overflow:auto;
+            border-bottom: 1px solid lightskyblue;
+            border-top: 1px solid lightskyblue;
+            .panel__message {
+                display:flex;
+                flex-direction:column;
+                .panel__author {
+                    font-size:15px;
+                }
+                .panel__message--wrapper {
+                    display:flex;
+                    align-items:center;
+                    gap:5px;
+                    .panel__icon--message {
+                        width:27px;
+                        height:27px;
+                        mask-image: url("/icons/avatar.svg");
+                    }
+                    .panel__content {
+                        font-size:15px;
+                        background-color: rgba(lightgray, .5);
+                        padding: 5px 10px 5px 10px;
+                        border-radius:10px;
+                        max-width: 200px;
+                    }
+                    .panel__content--me {
+                        background-color:rgba(lightskyblue, .5);
+                    }
+                }
+            }
+            .panel__message--me {
+                align-self:flex-end;
+            }
+        }
+        .panel__form {
+            display:flex;
+            gap:5px;
+            align-items:center;
+            padding:8px;
+        }
+        .panel__input {
+            height:30px;
+            padding:5px;
+            width:100%;
+        }
+        .panel__icon--send {
+            mask-image: url("/icons/send.svg");
+            transition:.2s;
+            cursor:pointer;
+        }
+        .panel__icon--send:hover {
+            background-color: lightskyblue;
+        }
+    }
+}

@@ -10,8 +10,16 @@ namespace Done.Services.ProjectsServices
         public async Task AddProject(DisplayProjectModel project)
         {
             List<DisplayProjectModel> projects = await GetProjectsFromLocalStorage();
-            if (projects.Count != 0) project.Id = projects.Last().Id + 1;
-            else project.Id = 1;
+            if (projects.Count != 0)
+            {
+                project.Id = projects.Last().Id + 1;
+                project.Lp = projects.Last().Id + 1;
+            }
+            else
+            {
+                project.Id = 1;
+                project.Lp = 1;
+            }
             projects.Add(project);
             await LocalStorage.SetAsync("projects", projects);
         }

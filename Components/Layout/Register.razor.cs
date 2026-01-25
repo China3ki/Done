@@ -16,6 +16,10 @@ namespace Done.Components.Layout
         public IDbContextFactory<DoneContext> DbFactory { get; set; } = default!;
         [Inject]
         public AuthService AuthService { get; set; } = default!;
+        [Inject]
+        public UpdateProjectService UpdateProjectService { get; set; } = default!;
+        [Inject]
+        public NotificationService NotificationService { get; set; } = default!;
         private EditContext? _editContext;
         private ValidationMessageStore? _messageStore;
         private readonly RegisterModel _register = new();
@@ -56,6 +60,7 @@ namespace Done.Components.Layout
             try
             {
                 await ctx.SaveChangesAsync();
+                await NotificationService.ShowNotification(new NotificationModel() { Info = "Your account has been created!", InfoType = InfoType.Success });
             }
             catch (Exception ex)
             {
@@ -68,6 +73,7 @@ namespace Done.Components.Layout
             _accountCreatedInfo = true;
             await Task.Delay(1000);
             await AuthService.CreateAuthenticationState(AuthService.CreateSessionModel(user));
+            UpdateProjectService.NotifyProjectsChanged();
             await CloseForm.InvokeAsync();
         }
     }
