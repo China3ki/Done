@@ -1,0 +1,107 @@
+﻿@page "/tasks/{ProjectId:int}"
+<section class="panel">
+    <div class="panel__header">
+        <i class="panel__icon panel__icon--header" aria-label="Project icon"></i>
+        <h1 class="panel__title">Dobra kolacja</h1>
+    </div>
+    <ul class="panel__stats">
+        <li class="panel__stat">
+            <span class="panel__number">20</span>
+            <span class="panel__desc">Users in projects</span>
+        </li>
+        <li class="panel__stat">
+            <span class="panel__number">10</span>
+            <span class="panel__desc">Task remaining</span>
+        </li>
+        <li class="panel__stat">
+            <span class="panel__number">20</span>
+            <span class="panel__desc">Task completed</span>
+        </li>
+    </ul>
+    <div class="panel__action">
+        <div class="panel__buttons">
+            <button class="panel__button panel__button--add">+ Add task</button>
+            <button class="panel__button panel__button--add">+ Add user</button>
+        </div>
+        <div class="panel__buttons">
+            <button class="panel__button">Archive project</button>
+            <button class="panel__button panel__button--delete">Delete project</button>
+        </div>
+    </div>
+    <div class="panel__main">
+        <div class="panel__tasks">
+           @*  @if(_jobsToDisplay.Count == 0)
+            {
+                <span>You do not have any jobs to display!</span>
+            } *@
+            <div class="panel__header--tasks">
+                <h2>Tasks</h2>
+                <input class="panel__input" type="text" placeholder="Search" />
+            </div>
+            <div class="panel__tabs">
+                <div class="panel__tab">
+                    <div class="panel__header">
+                        <span class="panel__title">Fajna kolacja</span>
+                        <div class="panel__priority">
+                            <span>High</span>
+                            <span class="panel__desc">Priority</span>
+                        </div>
+                    </div>
+                    <p class="panel__desc">fsdfsdfsdf</p>
+                    <div class="panel__footer">
+                        <span>2026.02.01 - 2026.02.20</span>
+                        <div class="panel__status">
+                            <span>Working</span>
+                            <span class="panel__desc">Status</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel__tab">
+                    <div class="panel__header">
+                        <span class="panel__title">Fajna kolacja</span>
+                        <div class="panel__priority">
+                            <span>High</span>
+                            <span class="panel__desc">Priority</span>
+                        </div>
+                    </div>
+                    <p class="panel__desc">fsdfsdfsdf</p>
+                    <div class="panel__footer">
+                        <span>2026.02.01 - 2026.02.20</span>
+                        <div class="panel__status">
+                            <span>Working</span>
+                            <span class="panel__desc">Status</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="panel__chat">
+            <h2 class="panel__title">Chat</h2>
+            <div class="panel__messages">
+                <div class="panel__message">
+                    <span class="panel__author">Jan</span>
+                    <div class="panel__message--wrapper">
+                        <i class="panel__icon panel__icon--message"></i>
+                        <span class="panel__content">Witaj w naszej mamy wazna sprawe do zalatwieniag fdg dfgdfgfdgfdf dgdfgfd dsfd sd  grupie!</span>
+                    </div>
+                </div>
+
+                <div class="panel__message panel__message--me">
+                    <div class="panel__message--wrapper">
+                        <span class="panel__content">Witaj w naszej grupie!</span>
+                    </div>
+                </div>
+                <div class="panel__message panel__message--me">
+                    <div class="panel__message--wrapper">
+                        <span class="panel__content panel__content--me">Witaj w naszej grupie!</span>
+                    </div>
+                </div>
+            </div>
+            <form class="panel__form">
+                <input class="panel__input" type="text" placeholder="Message" />
+                <button class="panel__icon panel__icon--send"></button>
+            </form>
+        </div> 
+    </div>
+</section>
+<NewTask ProjectId="ProjectId"/>

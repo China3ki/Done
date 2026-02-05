@@ -13,7 +13,9 @@ public partial class Project
 
     public bool ProjectPinned { get; set; }
 
-    public int ProjectUserId { get; set; }
+    public virtual ICollection<GroupChat> GroupChats { get; set; } = new List<GroupChat>();
 
-    public virtual User ProjectUser { get; set; } = null!;
+    public virtual ICollection<Job> Jobs { get; set; } = new List<Job>();
+
+    public virtual ICollection<ProjectsUser> ProjectsUsers { get; set; } = new List<ProjectsUser>();
 }

@@ -18,4 +18,16 @@ public partial class Job
     public int JobStatusPriorityId { get; set; }
 
     public int JobStatusId { get; set; }
+
+    public int JobProjectId { get; set; }
+
+    public int JobPriorityId { get; set; }
+
+    public virtual ICollection<Assigment> Assigments { get; set; } = new List<Assigment>();
+
+    public virtual Priority JobPriority { get; set; } = null!;
+
+    public virtual Project JobProject { get; set; } = null!;
+
+    public virtual Status JobStatus { get; set; } = null!;
 }

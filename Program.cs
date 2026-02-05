@@ -2,6 +2,7 @@ using Done.Components;
 using Done.Components.Layout;
 using Done.Entities;
 using Done.Services;
+using Done.Services.JobsServices;
 using Done.Services.ProjectsServices;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -28,6 +29,9 @@ builder.Services.AddScoped<ProjectServiceLocal>();
 builder.Services.AddScoped<ProjectServiceDb>();
 builder.Services.AddScoped<UpdateProjectService>();
 builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<JobServiceDb>();
+
+
 builder.Services.AddAuthenticationCore();
 builder.Services.AddCascadingAuthenticationState();
 

@@ -22,7 +22,7 @@
                 <tr>
                 <td>@project.Lp</td>
                 <td class="projects__open">
-                      <a href="/panel">@project.Name</a>
+                      <a class="projects__link" href="/tasks/@project.Id">@project.Name</a>
                 </td>
                 <td>@project.CreatedDate</td>
                 <td><i class="projects__icon projects__icon--pin @(project.Pinned ? "fill" : "")" @onclick="() => PinProject(project.Id)"></i></td>

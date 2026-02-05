@@ -39,9 +39,8 @@ namespace Done.Components.Layout
                 ProjectName = _newProjectModel.Name,
                 ProjectCreatedDate = DateOnly.FromDateTime(DateTime.Today),
                 ProjectPinned = false,
-                ProjectUserId = userId
             };
-            await ProjectServiceDb.AddProject(project);
+            await ProjectServiceDb.AddProject(project, userId);
             NewProjectService.NotifyProjectsChanged();
             await CloseNewProject.InvokeAsync(true);
         }

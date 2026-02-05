@@ -17,7 +17,13 @@ public partial class User
 
     public string UserPassword { get; set; } = null!;
 
-    public bool UserAdmin { get; set; }
+    public virtual ICollection<Assigment> Assigments { get; set; } = new List<Assigment>();
 
-    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+    public virtual ICollection<GroupMessage> GroupMessages { get; set; } = new List<GroupMessage>();
+
+    public virtual ICollection<Message> MessageMessageCreators { get; set; } = new List<Message>();
+
+    public virtual ICollection<Message> MessageMessageRecipients { get; set; } = new List<Message>();
+
+    public virtual ICollection<ProjectsUser> ProjectsUsers { get; set; } = new List<ProjectsUser>();
 }

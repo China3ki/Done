@@ -65,6 +65,10 @@
              white-space: nowrap;
              overflow:hidden;
          }
+         .projects__link {
+             display:block;
+             width:100%;
+         }
          .projects__open:hover {
              background-color: rgba(lightskyblue, .2);
              transition:.2s;

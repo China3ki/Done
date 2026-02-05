@@ -11,10 +11,18 @@ namespace Done.Services.ProjectsServices
     public class ProjectServiceDb(ProtectedLocalStorage localstorage, IDbContextFactory<DoneContext> DoneContext) : ProjectService(localstorage)
     {
         private readonly IDbContextFactory<DoneContext> _dbFactory = DoneContext;
-        public async Task AddProject(Project project)
+        public async Task AddProject(Project project, int userId)
         {
             using var ctx = await _dbFactory.CreateDbContextAsync();
+
+            ProjectsUser projectUser = new()
+            {
+                Project = project,
+                UserId = userId,
+                ProjectAdmin = true
+            };
             ctx.Add(project);
+            ctx.Add(projectUser);
             try
             {
                 await ctx.SaveChangesAsync();
@@ -26,7 +34,7 @@ namespace Done.Services.ProjectsServices
         public async Task<List<DisplayProjectModel>> GetProjectsFromDb(int userId)
         {
             using var ctx = await _dbFactory.CreateDbContextAsync();
-            List<Project> projects = await ctx.Projects.Where(p => p.ProjectUserId == userId).ToListAsync();
+            List<Project> projects = await ctx.ProjectsUsers.Where(p => p.UserId == userId).Select(p => p.Project).ToListAsync();
             List<DisplayProjectModel> projectsToDisplay = [];
             int i = 1;
             foreach(var project in projects)
@@ -49,6 +57,7 @@ namespace Done.Services.ProjectsServices
             {
                 List<DisplayProjectModel> localProjects = await GetProjectsFromLocalStorage();
                 List<Project> projects = [];
+                List<ProjectsUser> projectsUser = [];
                 foreach(var localProject in localProjects)
                 {
                     Project project = new()
@@ -56,12 +65,19 @@ namespace Done.Services.ProjectsServices
                         ProjectName = localProject.Name,
                         ProjectCreatedDate = localProject.CreatedDate,
                         ProjectPinned = localProject.Pinned,
-                        ProjectUserId = userId
+                    };
+                    ProjectsUser projectUser = new()
+                    {
+                        UserId = userId,
+                        Project = project,
+                        ProjectAdmin = true
                     };
                     projects.Add(project);
+                    projectsUser.Add(projectUser);
                 }
                 using var ctx = await _dbFactory.CreateDbContextAsync();
                 ctx.AddRange(projects);
+                ctx.AddRange(projectsUser);
                 try
                 {
                     await ctx.SaveChangesAsync();
@@ -78,8 +94,10 @@ namespace Done.Services.ProjectsServices
         {
             Console.WriteLine(projectId);
             using var ctx = await _dbFactory.CreateDbContextAsync();
-            var project = await ctx.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId && p.ProjectUserId == userId);
-            if (project is null) return;
+            //var project = await ctx.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId && p.ProjectUserId == userId);
+            var result = await ctx.ProjectsUsers.FirstOrDefaultAsync(p => p.UserId == userId && p.ProjectId == projectId);
+            if (result is null) return;
+            var project = result.Project;
             if (project.ProjectPinned) project.ProjectPinned = false;
             else project.ProjectPinned = true;
             try
@@ -94,7 +112,7 @@ namespace Done.Services.ProjectsServices
         public async Task<int> GetProjectsNumber(int userId)
         {
             using var ctx = await _dbFactory.CreateDbContextAsync();
-            int number = ctx.Projects.Count(p => p.ProjectUserId == userId);
+            int number = ctx.ProjectsUsers.Count(p => p.UserId == userId);
             return number;
         }
     }

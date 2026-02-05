@@ -67,6 +67,10 @@
   white-space: nowrap;
   overflow: hidden;
 }
+.projects .projects__table .projects__link {
+  display: block;
+  width: 100%;
+}
 .projects .projects__table .projects__open:hover {
   background-color: rgba(135, 206, 250, 0.2);
   transition: 0.2s;

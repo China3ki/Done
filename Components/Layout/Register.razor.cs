@@ -50,7 +50,6 @@ namespace Done.Components.Layout
                 UserName = _register.Name,
                 UserSurname = _register.Surname,
                 UserEmail = _register.Email,
-                UserAdmin = false
             };
 
             PasswordHasher<User> hasher = new();

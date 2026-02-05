@@ -11,7 +11,7 @@ namespace Done.Components.Pages
     public partial class Projects : IDisposable
     {
         [CascadingParameter]
-        private Task<AuthenticationState> AuthStateTask { get; set; } = default!;
+        public Task<AuthenticationState> AuthStateTask { get; set; } = default!;
         [Inject]
         public ProjectServiceLocal LocalService { get; set; } = default!;
         [Inject]

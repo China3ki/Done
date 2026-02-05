@@ -50,7 +50,6 @@ namespace Done.Services
                 Name = user.UserName,
                 Surname = user.UserSurname,
                 Avatar = user.UserAvatar ?? null,
-                Admin = user.UserAdmin
             };
             return sessionModel;
         }

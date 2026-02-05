@@ -1,0 +1,46 @@
+﻿<div class="project">
+    <div class="project__menu">
+        <i class="project__icon project__icon--close"></i>
+        <header class="project__header">
+            <i class="project__icon project__icon--header"></i>
+            <h1 class="project__title">New Project</h1>
+        </header>
+        <EditForm class="form" Model="_newJobModel" OnValidSubmit="Submit">
+            <DataAnnotationsValidator />
+            <div class="form__pair">
+                <InputText class="form__input" @bind-Value="_newJobModel.Name" placeholder="Task name" />
+            </div>
+            <div class="form__pair">
+                <InputText class="form__input" @bind-Value="_newJobModel.Description" placeholder="Description" />
+            </div>
+            <div class="form__pair">
+                <InputSelect class="form__input" @bind-Value="_newJobModel.Priority" >
+                        <option value="" hidden selected>Priority</option>
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                  </InputSelect>
+            </div>
+            <div class="form__pair">
+                <InputDate class="form__input" @bind-Value="_newJobModel.CreatedDate" placeholder="Start date" />
+            </div>
+            <div class="form__pair">
+                <InputDate class="form__input" @bind-Value="_newJobModel.EndDate" placeholder="End date" />
+            </div>
+            <div class="form__submits">
+                <span class="form__cancel">Cancel</span>
+                <input class="form__input--submit" type="submit" value="Add project" />
+            </div>
+            <ValidationSummary />
+        </EditForm>
+        <AuthorizeView>
+            <NotAuthorized>
+                <div class="project__warning">
+                    <span>You are not logged!</span>
+                    <span>All projects gonna be save locally!</span>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+        <img class="project__logo" src="/images/logo.webp" alt="Done logo" />
+    </div>
+</div>
